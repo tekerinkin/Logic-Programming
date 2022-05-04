@@ -16,6 +16,14 @@ sell(101, 324, 220, 34).
 sell(110, 325, 769, 48).
 sell(111, 322, 335, 27).
 
-pharamcy_id(Name, ID): -pharmacy(ID, Name, _, _).
+pharmacy_id(Name, ID):-pharmacy(ID, Name, _, _).
 
-available_drugs(Name): - pharmacy_id(Name, ID), sell(ID, _, _, _).
+pharmacy_adress(Name, Adress):-pharmacy(_,Name,Adress,_).
+
+pharmacy_phone(Name, Phone):-pharmacy(_,Name,_Phone).
+
+available_drugs(Name):-pharmacy_id(Name, ID), sell(ID, _, _, _).
+
+cheaepst_drug(Name, Adress):-
+
+
