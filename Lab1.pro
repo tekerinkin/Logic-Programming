@@ -22,8 +22,10 @@ pharmacy_adress(Name, Adress):-pharmacy(_,Name,Adress,_).
 
 pharmacy_phone(Name, Phone):-pharmacy(_,Name,_,Phone).
 
+pharmacy_ID_phone(ID, Phone):-pharmacy(ID,_,_,Phone).
+
 available_drugs(Name, Drug_ID):-pharmacy_id(ID, Name), sell(ID, Drug_ID, _, _).
 
-cheaepst_drug(Name, Adress):-
-
-
+neccesary_drug(Name, Quantity, Phone):-drug(ID, Name), sell(Ph_ID, ID,_,Number),
+    Number >= Quantity,
+    pharmacy_ID_phone(Ph_ID,Phone).
