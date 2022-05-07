@@ -30,12 +30,17 @@ minimum(A,B,Min):-A<B,Min = A ; Min = B.
 
 available_drugs(Name, Drug_ID):-pharmacy_id(ID, Name), sell(ID, Drug_ID, _, _).
 
-println(Name):- print(Name),print("\n");
-
 /*Находит аптеку в котором колчисетво лекарств не меньше чем Quantity*/
 neccesary_drug(Name, Quantity, Phone):-drug(ID, Name), sell(Ph_ID, ID,_,Number),
     Number >= Quantity,
     pharmacy_ID_phone(Ph_ID,Phone).
 
 /*Выводит все аптеки в которых продается лекарство*/
-all_pharmacies(Name):-drug(ID,Name), sell(Ph_ID,ID,_,_), pharmacy_id(Ph_ID, Ph_Name), println(Ph_Name), fail.
+all_pharmacies(Name):-drug(ID,Name), sell(Ph_ID,ID,_,_), pharmacy_id(Ph_ID, Ph_Name), write(Ph_Name + "\n"), fail.
+
+/*all_pharmacies("Арбидол")
+ * Горздрав + Столички*/
+
+/*neccesary_drug("Арбидол",27,Phone).
+ * Phone = 8981453
+   Phone = 3467823*/
