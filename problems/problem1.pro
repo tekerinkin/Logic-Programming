@@ -31,7 +31,7 @@ mother(Child, Mother) :-
     person(MotherId, Mother, female),
     parent(ChildId, MotherId).
 
-grandFather(Person, GranFather) :-
+grandFather(Person, GrandFather) :-
     person(PersonId, Person, _),
     parent(PersonId, ParentId),
     person(ParentId, Parent, _),
@@ -47,25 +47,25 @@ sister(Person, Sister) :-
     person(_, Sister, female),
     father(Person, Father),
     father(Sister, Father),
-    Person <> Sister.
+     not(Person = Sister).
 
 sister(Person, Sister) :-
     person(_, Sister, female),
     mother(Person, Mother),
     mother(Sister, Mother),
-    Person <> Sister.
+    not(Person = Sister).
     
 brother(Person, Brother) :-
     person(_, Brother, female),
     father(Person, Father),
     father(Brother, Father),
-    Person <> Brother.
+    not(Person = Brother).
 
 brother(Person, Brother) :-
     person(_, Brother, female),
     mother(Person, Mother),
     mother(Brother, Mother),
-    Person <> Brother.
+    not(Person = Brother).
     
 ancestor(Person, Ancestor) :-
     father(Person, Ancestor).
