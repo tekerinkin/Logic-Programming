@@ -8,7 +8,7 @@ domains
 
 class facts - spendingsDB
     spendings : (integer Spendings, category Category, integer Day, string Month).
-    days : (integer Days) single.
+    counter : (integer Cnt) single.
     sum : (integer Sum) single.
 
 class predicates
@@ -20,7 +20,7 @@ class predicates
     categoryStats : (category Category, string Month) failure.
 
 clauses
-    days(0).
+    counter(0).
     sum(0).
 
 clauses
@@ -34,24 +34,24 @@ clauses
         fail.
 
     categoryStats(Category, Month) :-
-        assert(days(0)),
+        assert(counter(0)),
         assert(sum(0)),
         !,
         spendings(Num, Category, _, Month),
-        days(Days),
+        counter(Cnt),
         sum(Sum),
-        assert(days(Days + 1)),
+        assert(counter(Cnt + 1)),
         assert(sum(Sum + Num)),
         fail.
 
     fullReport(Category, Month) :-
         not(categoryReport(Category, Month)),
         not(categoryStats(Category, Month)),
-        days(Days),
+        counter(Cnt),
         sum(Sum),
         writef("Total: %,  ", Sum),
-        Days <> 0,
-        writef("Average: %\n", Sum / Days),
+        Cnt <> 0,
+        writef("Average: %\n", Sum / Cnt),
         fail.
 
     fullReport(_, _) :-
