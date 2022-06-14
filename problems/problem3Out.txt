@@ -5,4 +5,4 @@
 [:out] 74
 
 [:in] not(numOfGreater(3)), greater(Great), write(Great), ...
-[:out] 215
+[:out] 144
